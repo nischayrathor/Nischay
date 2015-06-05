@@ -1,0 +1,19 @@
+Bash Hacks
+
+for ((i=0; i<1000000; i++)) ; do echo $RANDOM; done > filename
+
+paste -sd+ filename | bc
+
+awk '{ sum += $1 } END { print sum }' random_numbers
+
+tr "\n" + < random_numbers ; echo 0; } | bc;
+
+s=0;while read l; do s=$((s+$l));done<random_numbers;echo $s
+
+s=0;while read l; do ((s+=l));done<random_numbers;echo $s;
+
+sed ':a;N;s/\n/+/;ta' random_numbers|bc; 
+
+
+
+
