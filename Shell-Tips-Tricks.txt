@@ -1,0 +1,30 @@
+shell Tips and Tricks
+****************************************
+
+[thakur@Nischay ~]$ counter=0
+[thakur@Nischay ~]$ cat /etc/passwd | while read ; # pip caused while segment to execute in a subshell
+> do ((counter++))
+> done
+[thakur@Nischay ~]$ echo $counter
+0
+[thakur@Nischay ~]$ counter=0
+[thakur@Nischay ~]$ while read; do ((counter++));done </etc/passwd
+[thakur@Nischay ~]$ echo $counter
+24
+
+
+************************************************************************
+Sub Shell demos
+source ./myvariables.sh
+# equivalent to:
+. ./myvariables.sh
+
+
+[thakur@Nischay ~]$ name="nischay"
+[thakur@Nischay ~]$ echo $name
+nischay
+[thakur@Nischay ~]$ (name="montu")
+[thakur@Nischay ~]$ echo $name
+nischay
+
+****************************************************************
