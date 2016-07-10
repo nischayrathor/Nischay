@@ -1,2 +1,5 @@
 1. http://linuxcommand.org/index.php
 2. http://tldp.org/LDP/abs/html/
+3. http://wiki.bash-hackers.org/start
+4. http://mywiki.wooledge.org/
+5. http://www.shelldorado.com/goodcoding/tempfiles.html
