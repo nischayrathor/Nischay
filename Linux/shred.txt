@@ -1,0 +1,7 @@
+shred -n 5 -vz /dev/sda
+shred -v --random-source=/dev/urandom -n1 /dev/sda
+wipe -D /path/to/file.doc
+dd if=/dev/urandom of=/dev/sda bs=4096
+scrub -p dod /dev/sda
+openssl enc -aes-256-ctr -pass pass:"$(dd if=/dev/urandom bs=128 count=1 2>/dev/null | base64)" -nosalt </dev/zero | pv -bartpes 399717171200 | dd bs=64K of=/dev/sda
+badblocks -wsvf /dev/sda
