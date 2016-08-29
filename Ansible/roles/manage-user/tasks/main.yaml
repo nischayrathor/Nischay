@@ -1,0 +1,10 @@
+---
+- include: add_users.yaml
+- include: delete_users.yaml
+- name: Allowing wheel group users to have password less sudo access
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    backup: yes

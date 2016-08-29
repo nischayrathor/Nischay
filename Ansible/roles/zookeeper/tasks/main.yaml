@@ -1,0 +1,35 @@
+---
+- name: setting up directory for zookeeper and Kafka in centos
+  file: dest="{{item}}" state=directory owner=zookeeper group=zookeeper mode=755
+  tags:
+    - zookeeper-dirs
+  with_items:
+    - /mnt/zookeeper
+    - /mnt/zookeeper/data
+    - /mnt/zookeeper/log
+
+- name: Download zookeeper only if it not in /tmp
+  stat: path=/tmp/zookeeper-3.4.8.tar.gz
+  register: check_stat
+
+
+- name: Downloading zookeeper
+  get_url: url=http://www-eu.apache.org/dist/zookeeper/stable/zookeeper-3.4.8.tar.gz dest=/tmp mode=0644
+  when: check_stat.stat.exists == False
+
+- name: extracting tar archive
+  shell: tar -xvzf /tmp/zookeeper-3.4.8.tar.gz
+  args:
+    chdir: /mnt/zookeeper
+
+- name: Setting up permission to zokeeper user
+  shell: chown -R zookeeper:zookeeper /mnt/zookeeper
+
+- name: doing some pretty stuff
+  shell: mv zookeeper-3.4.8/* .
+  args:
+    chdir: /mnt/zookeeper
+  ignore_errors: yes
+
+- name: remving unwanted dirs
+  file: path=/mnt/zookeeper/zookeeper-3.4.8 state=absent

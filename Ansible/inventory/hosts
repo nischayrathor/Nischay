@@ -1,0 +1,16 @@
+[centos-vm]
+192.168.147.128:22 ansible_connection=ssh ansible_user=root
+192.168.147.129:22 ansible_connection=ssh ansible_user=root
+192.168.147.130:22 ansible_connection=ssh ansible_user=root
+
+[centos-vm:vars]
+http_port=8080
+
+[centos-haproxy]
+192.168.147.128:22 ansible_connection=ssh ansible_user=root
+
+[centos-web]
+192.168.147.129:22 ansible_connection=ssh ansible_user=root
+
+[local]
+127.0.0.1:22 ansible_connection=ssh ansible_user=nischaysinghrathore

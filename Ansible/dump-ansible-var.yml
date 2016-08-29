@@ -1,0 +1,10 @@
+---
+- hosts: centos-web
+  gather_facts: yes
+  tasks:
+  - template:
+      src: templates/dump_variables
+      dest: /tmp/ansible_variables
+  - fetch:
+      src: ansible_variables
+      dest: "{{inventory_hostname}}_ansible_variables"

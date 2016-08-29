@@ -1,0 +1,8 @@
+---
+- hosts: centos-vm
+  name: User managemet via Ansible
+  gather_facts: yes
+  remote_user: root
+
+  roles:
+    - {role: users}

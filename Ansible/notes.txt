@@ -1,0 +1,22 @@
+1. Running Ansible in dry run mode - ansible-playbook demo.yml --check
+2. Collects facts for all hosts - ansible all -m setup --tree all-hosts-facts 
+3. Command line vaariables override the variables defined inside cookbooks - http://docs.ansible.com/ansible/playbooks_variables.html
+	--extra-vars or -e (flag is short form of --extra-vars)
+4. Caching facts in Ansible - http://jpmens.net/2015/01/29/caching-facts-in-ansible/
+	       fact_caching = redis
+               fact_caching_timeout = 3600
+               fact_caching_connection = localhost:6379:0
+5. Using Ansible Vault to save secret information - 
+	ansible-vault create vars/main.yml
+	ansible-vault edit vars/main.yml
+	ansible-vault decrypt
+	ansible-vault encrypt
+	ansible-valut rekey
+6. https://galaxy.ansible.com/ - Ansible Galaxy is your hub for finding, reusing and sharing the best Ansible content.
+
+7. Running Ansible in Dry Run mode - ansible-playbook some-playbook.yml --check
+				     enabling dry run in task - check_mode: yes
+				     ansible-playbook foo.yml --check --diff --limit foo.example.com
+
+8. Ignore failed commands - ignore_errors: yes
+9. Creating hashed password for user creating - mkpasswd --method=SHA-512

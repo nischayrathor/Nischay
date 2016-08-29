@@ -1,0 +1,87 @@
+---
+branches:
+  only:
+    - master
+language: python
+python: "2.7"
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/f36d86f0e2f16d22520e
+      - https://api.opsgenie.com/v1/json/travisci?apiKey=3158bf10-5d26-40fd-83ae-2e43fbad14a4
+      - https://galaxy.ansible.com/api/v1/notifications/
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: never     # options: [always|never|change] default: always
+
+install:
+# Install Ansible.
+- pip install ansible
+
+# Create foobar user to ensure deletion works
+- ansible -i tests/inventory localhost -m user -a "name=foobar" --sudo
+
+# Add ansible.cfg to pick up roles path.
+- "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+
+script:
+# Check the role/playbook's syntax.
+- ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+
+# Run the role/playbook with ansible-playbook.
+- "ansible-playbook -i tests/inventory tests/test.yml"
+
+# Run the role/playbook again, checking to make sure it's idempotent.
+- >
+  ansible-playbook -i tests/inventory tests/test.yml
+  | grep -q 'changed=0.*failed=0'
+  && (echo 'Idempotence test: pass' && exit 0)
+  || (echo 'Idempotence test: fail' && exit 1)
+
+# ensure foo user exists
+- getent passwd foo > /dev/null
+
+# Check to see if foo user has correct key
+- sudo cat /home/foo/.ssh/authorized_keys | grep -q 'name@domain.com'
+
+# Test adding a second key
+- >
+  ansible-playbook -i tests/inventory tests/test.yml -e '@tests/multikey.yml'
+  | grep -q 'changed=1.*failed=0'
+  && (echo 'addkey test: pass' && exit 0)
+  || (echo 'addkey test: fail' && exit 1)
+
+# Check to see if foo user has correct keys
+- sudo cat /home/foo/.ssh/authorized_keys | grep -q 'name@domain.com'
+- sudo cat /home/foo/.ssh/authorized_keys | grep -q 'smiller@domain.com'
+
+# Test removing a second key
+- >
+  ansible-playbook -i tests/inventory tests/test.yml
+  | grep -q 'changed=1.*failed=0'
+  && (echo 'rmkey test: pass' && exit 0)
+  || (echo 'rmkey test: fail' && exit 1)
+
+# Check to see if second key was removed
+- sudo cat /home/foo/.ssh/authorized_keys | grep -q 'name@domain.com'
+- >
+  sudo cat /home/foo/.ssh/authorized_keys
+  | grep -q 'smiller@domain.com' && (exit 1) || (exit 0)
+
+# ensure foo user has the correct groups
+- sudo groups foo | grep sudo
+- sudo groups foo | grep adm
+- sudo groups foo | grep dialout
+- sudo groups foo | grep cdrom
+- sudo groups foo | grep floppy
+- sudo groups foo | grep video
+- sudo groups foo | grep audio
+- sudo groups foo | grep plugdev
+
+# ensure foobar user was deleted
+- >
+  ansible -i tests/inventory localhost -m user -a "name=foobar state=absent" --sudo
+  | grep -q '"changed": false'
+  && (echo 'Userdel test: pass' && exit 0)
+  || (echo 'Userdel test: fail' && exit 1)

@@ -1,0 +1,20 @@
+1. Git log in pretty format
+	git log --pretty=oneline
+        git push origin --tags ### pushing all git tags to remote
+        git push origin v0.1 ### pushing a specific git to remote
+   	git checkout -b version2 v2.0.0 ### checkout a tag
+ 	git tag ## list all tags
+	git show v0.1 ### list a tags commit and other information
+
+	git tag v1.4-lw ### creating a lightwwight tags
+ 	git tag -a v1.4 -m "my version 1.4"  ## Creating an annonated tag
+	git tag -l "v1.8.5*"  ## Searching for tags with particular pattern
+2. Git Branches
+	git checkout -b <branch-name> ## Creating a new branch
+ 	git push -u origin <branch-name. ### pushing a local branch to remote
+	git push origin --delete serverfix ### delete branch from remote
+	git branch -vv  ## list all branches
+	git branch -r -vv ## list all remote branches
+	git branch -a -vv ## list all branches local and remote
+
+3. git fetch vs git pull - http://stackoverflow.com/questions/292357/what-are-the-differences-between-git-pull-and-git-fetch

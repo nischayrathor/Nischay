@@ -1,0 +1,26 @@
+---
+# Users with sudo access and their keys. Each user can have multiple keys
+shell: /bin/bash
+manage_users_allowed:
+  - name: nischay
+    password: $6$w9496prbjWL/u4ma$mSSsDJlo/H.GgUtohUrk4eyBWimag/JGi2qQnco6TuKogVQkRe2cB6S8xuiiplwUpzhG3IHv2Xk6Mzpp.HFE1/
+    authorized:
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAA/g4FVQXcx1mdjTk6Tb1jn1VW85m94B4BGL1VsyITjR8rXWEY/XOo5oG2XUo85mBUakZmpjq3sGjMXXoG2GIDOgXcb+gCw0Ip17tF2UuL3ce5W70Y5hHvPlnyXyz/bkkATe3fPnkWeaLlV8dCJouSABKZ6YPz8ZhND8Q3niV1C9bL+ARxwK2rBdQ0DjI6xyK1WISe3NkXOPr9C02GrkAgHdQSqoA6KpAzZqVNz3GzO6AOLT4JJCuwCPBjiqwz3YEyVJilMWoTnRTS+PJaA0smSD2T6D7JSmJe7jF7FpddmBZ83jeuI/NRDbXWz9i0yV1QerP8FU+RDT8Ya27NbWKH nischay@NischayUbuntuOffice"
+    - "ssh-dss AAAAB3NzaC1kc3MAAACBAJFTlF1ZcFBmUYV0tDDCsCTEiaIC99mPXCRydEw5rSplKGo1TDS/S2W9OUXqCqPPkX6dgVgBauWrc4h3i4l1OyjV74XjwiGVv1CndNYUB3vbIXfCP2bM1GC26qRPGqHn7Rl2dFwH7W+M+G/T3KJSErIF9gKlPnl3Sl10anVbYKn9AAAAFQCq2L4a6CqGkXhqDeDGUeTCDBgltQAAAIA+Z3e3J3qz1KUoYl0z3aGcNhPVV6l9K+08d3ydc0DtSSbU1wgkZnUe3eKdJbe4Iw1NNg64sAiXm696Yvh9oGV2FzDvTaHFom3pMpV2RBWjJPdFWBYojJV0BnqoY3Kn+CG5wvurUg3wzF+P0tm0mlxhNNEOQ8KrjnC9+UKpjf3kMwAAAIA02JwV1JlLZ0m60JS9qHEGkQWt4gFDI0Zr062v6gI5NdVyom+mH46w+bMMGoUlwVpnb2NQEKQZaldyEbZLiH/mEVLOin3sLNm2itwXKLBJ+2hfSJpjh7gFxdTH9XUZLMP6b9iL+ggXbOHWOK1IsKvmpD9hzK9JYjVZrqYYShb2JQ== nischay@NischayLaptop"
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/b5cvcJQqbO4q7dKc/Jdn+UxAAihmZGde3bf6r0gLpqw9ARD7JbcfLgsLqmL7o+bkxRTH53xSoL2mFSp/SvjGBCYKZ9X+BXXiyXWNRPPCbjeH65h19cQ9RA/vpENFOyiRGu5jEi7JfTCUnKBjaVQFShTWH8J4v3GBhh7ww0TKNjKVIE+exENq0LiYOYCEnpkuICu4CpqNHosBTjatqCPuMHmXHnea8lz3/C8l7B3whSxs7g8+C6WU/Tkdtz+5Y1Vl/i38SzFByknX8VCsG6Hbe6m2yU2sgwRzqV6tL3ZIYKS2Hy6+GM4GBj/4lwXxyMByVAnEbuFDcsSCPp8Rtg3D nishchayrathore@gmail.com"
+
+  - name: zookeeper
+    password: $6$w9496prbjWL/u4ma$mSSsDJlo/H.GgUtohUrk4eyBWimag/JGi2qQnco6TuKogVQkRe2cB6S8xuiiplwUpzhG3IHv2Xk6Mzpp.HFE1/
+    authorized:
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAA/g4FVQXcx1mdjTk6Tb1jn1VW85m94B4BGL1VsyITjR8rXWEY/XOo5oG2XUo85mBUakZmpjq3sGjMXXoG2GIDOgXcb+gCw0Ip17tF2UuL3ce5W70Y5hHvPlnyXyz/bkkATe3fPnkWeaLlV8dCJouSABKZ6YPz8ZhND8Q3niV1C9bL+ARxwK2rBdQ0DjI6xyK1WISe3NkXOPr9C02GrkAgHdQSqoA6KpAzZqVNz3GzO6AOLT4JJCuwCPBjiqwz3YEyVJilMWoTnRTS+PJaA0smSD2T6D7JSmJe7jF7FpddmBZ83jeuI/NRDbXWz9i0yV1QerP8FU+RDT8Ya27NbWKH nischay@NischayUbuntuOffice"
+
+  - name: kafka
+    password: $6$w9496prbjWL/u4ma$mSSsDJlo/H.GgUtohUrk4eyBWimag/JGi2qQnco6TuKogVQkRe2cB6S8xuiiplwUpzhG3IHv2Xk6Mzpp.HFE1/
+    authorized:
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAA/g4FVQXcx1mdjTk6Tb1jn1VW85m94B4BGL1VsyITjR8rXWEY/XOo5oG2XUo85mBUakZmpjq3sGjMXXoG2GIDOgXcb+gCw0Ip17tF2UuL3ce5W70Y5hHvPlnyXyz/bkkATe3fPnkWeaLlV8dCJouSABKZ6YPz8ZhND8Q3niV1C9bL+ARxwK2rBdQ0DjI6xyK1WISe3NkXOPr9C02GrkAgHdQSqoA6KpAzZqVNz3GzO6AOLT4JJCuwCPBjiqwz3YEyVJilMWoTnRTS+PJaA0smSD2T6D7JSmJe7jF7FpddmBZ83jeuI/NRDbXWz9i0yV1QerP8FU+RDT8Ya27NbWKH nischay@NischayUbuntuOffice"
+#users to be removed if they exist.
+manage_users_unauthorized:
+  - test
+
+# list of groups that sudo_users should be a member of
+manage_users_groups: "wheel"

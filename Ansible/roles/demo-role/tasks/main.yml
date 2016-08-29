@@ -1,0 +1,3 @@
+---
+- name: Pushing a simple file via Ansible template
+  template: src=demo.j2 dest={{file_location}}
