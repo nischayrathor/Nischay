@@ -1,0 +1,4 @@
+1. Ruby Documentation tool  - http://yardoc.org/
+2. Ruby Blog Tool Jekyll - https://jekyllrb.com/
+3. GitHub Pages - https://pages.github.com/
+4. Node JS Blog Framework  - https://hexo.io/
