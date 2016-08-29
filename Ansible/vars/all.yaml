@@ -1,0 +1,11 @@
+---
+playbook_owner: "Nischay Rathor"
+playbook_owner_company: "Sprinklr"
+
+demo_vars:
+  var1: "value1"
+  val2: "value2"
+  name: "Nischay"
+
+## we can access these variables as dems_vars['var1']
+reboot_server: "no"

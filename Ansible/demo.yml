@@ -1,0 +1,36 @@
+---
+- name: Installig Apache and setting up wordpress
+  hosts: centos-web
+  gather_facts: yes
+  strategy: debug
+  remote_user: root
+  vars:
+    http_port: 8080
+    http_server: apache
+    http_lb: haproxy
+    node_name: "{{ansible_nodename}}" ## variables comes from anisble facts `ansible hostname -m setup`
+    
+  tasks:
+  - name: ensure apache is at the latest version
+    yum: name=httpd state=latest
+  - name: write the apache config file
+    template: src=files/httpd.conf dest=/etc/httpd/conf/nischay.conf
+    notify:
+    - Reload Apache
+  - name: ensure apache is running  
+    service: name=httpd state=started enabled=yes
+  - name: Pushing a index.html file
+    template: src=files/index.html dest=/var/www/html/index.html owner=apache group=apache mode="u=rw,g=r,o=r"
+  - name: Copy a example file from local machine to remote hosts
+    copy: src=files/demo.txt dest=/tmp/demo.txt owner=root group=root mode=600 backup=yes
+  - name: Executing commands on remote hosts
+    command: /usr/bin/uptime
+
+  handlers:
+   - name: Start Apache
+     service: name=httpd state=started enabled=yes
+
+   - name: Reload Apache
+     service: name=httpd state=reloaded
+
+- include: setup.yml

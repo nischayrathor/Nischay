@@ -1,0 +1,38 @@
+---
+- name: setting up directory for Kafka in centos
+  file: dest="{{item}}" state=directory owner=kafka group=kafka mode=755
+  tags:
+    - kafka-dirs
+  with_items:
+    - /mnt/kafka
+    - /mnt/kafka/data
+    - /mnt/kafka/log
+
+- name: Download kafka only if it not in /tmp
+  stat: path=/tmp/kafka_2.11-0.10.0.1.tgz
+  register: check_stat
+
+
+- name: Downloading kafka
+  get_url: url=http://mirror.fibergrid.in/apache/kafka/0.10.0.1/kafka_2.11-0.10.0.1.tgz dest=/tmp mode=0644
+  when: check_stat.stat.exists == False
+
+- name: extracting tar archive
+  shell: tar -xvzf /tmp/kafka_2.11-0.10.0.1.tgz
+  args:
+    chdir: /mnt/kafka
+
+- name: Setting up permission to zokeeper user
+  shell: chown -R kafka:kafka /mnt/kafka
+
+- name: doing some pretty stuff
+  shell: mv kafka_2.11-0.10.0.1/* .
+  args:
+    chdir: /mnt/kafka
+  ignore_errors: yes
+
+- name: remving unwanted dirs
+  file: path=/mnt/kafka/kafka_2.11-0.10.0.1 state=absent
+
+- name: Setting up kernel parameters for kafka users (limits.conf)
+  pam_limits: domain=kafka limit_type=hard limit_item=nofile value=98304 use_max=yes

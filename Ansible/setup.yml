@@ -1,0 +1,30 @@
+---
+- name: Setting up a brand new server
+  hosts: centos-vm
+  gather_facts: yes
+  remote_user: root
+  vars_files:
+      - vars/all.yaml
+
+  pre_tasks:
+    - shell: echo "Hi! Guys, Starting playbook executaion."  
+    - debug: msg="Hi! Guys, Starting playbook executaion."
+  roles:
+    - { role: server_setup, tags: [ 'server_setup' ] }
+    - { role: server_reboot, tags: ['server_reboot'], when: "reboot_server == 'yes'" }
+    - { role: java, when: "ansible_os_family == 'RedHat'", java_packages: "java-1.8.0-openjdk" }
+    - { role: manage-user, tags: [ 'manage_users' ] }
+    - { role: zookeeper, tags: ['settng up zookeeper'] }
+    - { role: kafka, tags: ['setting up kafka'] }
+
+  tasks: 
+  - name: Downloading anaconda-ks.cfg file from new servers
+    fetch: src={{ item }} dest=junk/{{ inventory_hostname }}-{{ item | basename }} flat=yes
+    tags: ['fetch_files']
+    with_items:
+      - /root/anaconda-ks.cfg
+      - /etc/hostname
+
+  post_tasks:
+    - shell: echo "Great, Playbook execuation completed, We have new shinny server ready to use."
+    - debug: msg="Great, Playbook execuation completed, We have new shinny server ready to use."

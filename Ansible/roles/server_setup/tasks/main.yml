@@ -1,0 +1,37 @@
+---
+- name: Ensure essenstials packages are installed on box
+  package: name="{{item}}" state=latest
+  tags:
+    - packages
+  with_items:
+    - curl
+    - wget
+    - zip
+    - iotop
+    - nc
+    - tcpdump
+    - unzip
+    - tcpdump
+    - ntp
+    - strace
+    - powertop
+    - sysstat
+    - screen
+    - vim
+    - telnet
+    - git
+    - gcc
+    - perl
+    - ruby
+    - tree
+    - psmisc
+
+- name: Creating Requried directory structure
+  file: dest="{{item}}" state=directory owner=root group=root mode=755
+  tags:
+    - dirs
+  with_items:
+    - /tmp/dir1
+    - /tmp/dir2
+    - /mnt1
+    - /mnt2

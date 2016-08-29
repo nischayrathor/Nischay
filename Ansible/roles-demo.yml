@@ -1,0 +1,4 @@
+---
+- hosts: centos-web
+  roles:
+    - { role: "demo-role" }
