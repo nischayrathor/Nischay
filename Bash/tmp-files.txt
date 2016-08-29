@@ -1,0 +1,8 @@
+#!/bin/bash
+### Creating temporary files and directory in bash
+
+filename_tmp=`mktemp`
+echo $filename_tmp
+
+dirname_tmp=`mktemp -d`
+echo $dirname_tmp
