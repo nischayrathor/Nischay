@@ -4,3 +4,4 @@
 4. Node JS Blog Framework  - https://hexo.io/
 5. Apache Guacamole clientless remote desktop gateway - http://guacamole.incubator.apache.org/
 6. Homebrew Missing package manager in Mac - http://brew.sh/
+7. PRY Ruby Shell  - http://pryrepl.org/ gem install pry
