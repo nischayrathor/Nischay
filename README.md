@@ -1,8 +1,16 @@
 ## Introduction
-This GitHub repository going to contain my whole shell scripting work.
+Hi! Guys, I am **Nischay** from Bangalore India. I am a **DevOps Engineer at Sprinklr**. This GitHub repository houses all my learning, tips and tricks.
 
-##Contact
-nishchayrathore@gmail.com
+![](https://dl.dropboxusercontent.com/u/12181164/Nischay.jpg)
 
-## License
+## Contact
+*EMail* - <nishchayrathore@gmail.com>
+
+*Linkedin* - <https://in.linkedin.com/in/nischaysinghrathor>
+
+*StackExchange* - <http://stackexchange.com/users/1994152/nischay>
+
+*GitHub* - <https://github.com/nischayrathor\
+
+### License
 You are free to use this stupid code.
