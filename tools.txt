@@ -5,3 +5,5 @@
 5. Apache Guacamole clientless remote desktop gateway - http://guacamole.incubator.apache.org/
 6. Homebrew Missing package manager in Mac - http://brew.sh/
 7. PRY Ruby Shell  - http://pryrepl.org/ gem install pry
+8. Chrony - https://chrony.tuxfamily.org/ - Lightweight NTP service
+9. https://blog.codinghorror.com/the-programmers-bill-of-rights/
