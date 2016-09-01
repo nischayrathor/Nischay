@@ -10,7 +10,7 @@ Hi! Guys, I am **Nischay** from Bangalore India. I am a **`DevOps Engineer` at S
 
 - *StackExchange* - <http://stackexchange.com/users/1994152/nischay>
 
-- *GitHub* - <https://github.com/nischayrathor\
+- *GitHub* - <https://github.com/nischayrathor>
 
 ### License
 You are free to use this stupid code.
