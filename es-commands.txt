@@ -1,0 +1,54 @@
+### Check ES cluster health
+ - curl -s -XGET http://localhost:9200/_cluster/health?pretty
+ - http://localhost:9200/_cat/health?v
+
+### Check Shards Allocation
+ - curl -s -XGET http://localhost:9200/_cat/allocation?v
+ - curl -s -S 'localhost:9200/_cat/allocation?v' | grep -v master | sort -n -k 5
+
+### Check cluster nodes status
+ - curl -s -XGET http://localhost:9200/_cat/nodes?v
+
+### List configured SnapShot Repositories
+ - curl -s -XGET http://localhost:9200/_snapshot?pretty
+
+### List all snapshots in a repositories
+ - curl -s -XGET http://localhost:920/_snapshot/REPO-Name/_all?pretty
+
+### Check ongoing Recovery Status
+ - curl -s -XGET 'localhost:9200/_cat/recovery?v&active_only'
+
+### Deleting a Snapshot Repository
+ - curl -s -XDELETE localhost:9200/_snapshot/Repo-Name
+
+### Setting Replication factor
+ - curl -XPUT 'localhost:9200/_all/_settings' -d '
+  {
+      "index" : {
+          "number_of_replicas" : 0
+      }
+  }'
+
+### Disabling Shards Allocation in Cluster
+ - curl -XPUT localhost:9200/_all/_settings -d '{
+     "index.routing.allocation.disable_allocation" : "true"
+    }'
+
+### Enabling Shards Allocation in Cluster
+ - curl -XPUT localhost:9200/_all/_settings -d '{
+     "index.routing.allocation.disable_allocation" : "false"
+   }'
+
+### List all Unassigned Shards allocation in cluster
+ - curl -s -XGET 'http://localhost:9200/_cat/shards?v' | grep UNASS | grep " p "
+
+### List all Thread in ES cluster
+ - curl -s -XGET 'http://localhost:9200/_cat/thread_pool?v'
+
+### List All indices in ES cluster
+ - curl -s -XGET 'http://localhost:9200/_cat/indices?v'
+
+### Get Cluster running configuration
+ - curl -s -XGET 'http://localhost:9200/_cluster/settings?pretty'
+
+###
