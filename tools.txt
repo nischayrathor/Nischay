@@ -7,3 +7,5 @@
 7. PRY Ruby Shell  - http://pryrepl.org/ gem install pry
 8. Chrony - https://chrony.tuxfamily.org/ - Lightweight NTP service
 9. https://blog.codinghorror.com/the-programmers-bill-of-rights/
+10. http://skwp.github.io/dotfiles/
+11. http://ohmyz.sh/

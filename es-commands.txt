@@ -148,3 +148,6 @@
 
 ### Plugin Info
  - curl -XGET 'localhost:9200/_cat/plugins?v' 
+
+### Deleting all incdices from cluster
+ - curl -XDELETE 'http://localhost:9200/_all'
