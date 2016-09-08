@@ -1,0 +1,11 @@
+1. ES vs Solr - http://solr-vs-elasticsearch.com/
+                http://stackoverflow.com/questions/10213009/solr-vs-elasticsearch
+                https://www.quora.com/What-are-the-main-differences-between-ElasticSearch-Apache-Solr-and-SolrCloud
+
+2. ES - http://blog.trifork.com/2013/10/24/how-to-avoid-the-split-brain-problem-in-elasticsearch/
+        https://www.elastic.co/guide/en/elasticsearch/guide/1.x/_important_configuration_changes.html
+
+3. Linux I/O Scheduler - https://www.thomas-krenn.com/de/wiki/Linux_I/O_Scheduler
+                         http://www.nuodb.com/techblog/tuning-linux-io-scheduler-ssds
+                         https://wiki.debian.org/SSDOptimization
+                         https://wiki.archlinux.org/index.php/Solid_State_Drives

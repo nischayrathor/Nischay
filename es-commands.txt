@@ -1,0 +1,153 @@
+### Check ES cluster health
+ - curl -s -XGET http://localhost:9200/_cluster/health?pretty
+ - http://localhost:9200/_cat/health?v
+
+### Check Shards Allocation
+ - curl -s -XGET http://localhost:9200/_cat/allocation?v
+
+### Check cluster nodes status
+ - curl -s -XGET http://localhost:9200/_cat/nodes?v
+ - curl -s -XGET http://localhost:9200/_cat/master/?v
+
+### List configured SnapShot Repositories
+ - curl -s -XGET http://localhost:9200/_snapshot?pretty
+
+### List all snapshots in a repositories
+ - curl -s -XGET http://localhost:920/_snapshot/REPO-Name/_all?pretty
+
+### Check ongoing Recovery Status
+ - curl -s -XGET 'localhost:9200/_cat/recovery?v&active_only'
+
+### Deleting a Snapshot Repository
+ - curl -s -XDELETE localhost:9200/_snapshot/Repo-Name
+
+### Setting Replication factor
+ - curl -XPUT 'localhost:9200/_all/_settings' -d '
+  {
+      "index" : {
+          "number_of_replicas" : 0
+      }
+  }'
+
+### Disabling Shards Allocation in Cluster
+ - curl -XPUT localhost:9200/_all/_settings -d '{
+     "index.routing.allocation.disable_allocation" : "true"
+    }'
+
+### Enabling Shards Allocation in Cluster
+ - curl -XPUT localhost:9200/_all/_settings -d '{
+     "index.routing.allocation.disable_allocation" : "false"
+   }'
+
+### List all Unassigned Shards allocation in cluster
+ - curl -s -XGET 'http://localhost:9200/_cat/shards?v' | grep UNASS | grep " p "
+
+### List all Thread in ES cluster
+ - curl -s -XGET 'http://localhost:9200/_cat/thread_pool?v'
+
+### List All indices in ES cluster
+ - curl -s -XGET 'http://localhost:9200/_cat/indices?v'
+
+### Get Cluster running configuration
+ - curl -s -XGET 'http://localhost:9200/_cluster/settings?pretty'
+
+### List All Shards in ES cluster
+ - curl -s -XGET http://localhost:9200/_cat/shards?v
+
+### List All Incides in ES  cluster
+ - curl -s -XGET http://localhost:9200/_cat/indices?v
+
+### Adding a document in ES cluster
+ - curl -XPUT 'http://localhost:9200/info/name/1' -d '{
+     "name": "Nischay Rathor",
+     "hometown": "Allahabad"
+    }'
+
+### Retrieve a document in ES cluster
+ - curl -XGET 'http://localhost:9200/info/name/1'
+
+### Deleting a document
+ - curl -s -XDELETE 'http://localhost:9200/info/name/1'
+
+### Searching in Documents
+ - curl -XGET 'localhost:9200/info/name/_search?q=name:Nischay'
+
+### Creating an Index
+ - curl -s -XPUT 'http://localhost:9200/info'
+
+### Deleting an Index
+ - curl -s -XDELETE 'http://localhost:9200/info'
+
+### Check if index exists
+ - curl -XHEAD -i 'http://localhost:9200/info?pretty' 
+
+### Get Index
+ - curl -XGET 'http://localhost:9200/info?pretty'
+
+### Open Index
+ - curl -XPOST 'http://localhost:9200/info/_open'
+
+### Close index
+ - curl -XPOST 'http://localhost:9200/info/_close'
+
+### Creating a Repository
+ - curl -s -XPUT http://localhost:9200/_snapshot/es-backup-aws-prod -d '{
+        "type": "s3",        
+        "settings": {
+                "bucket": "es-backup-aws-prod",
+                "compress" : true,
+                "max_snapshot_bytes_per_sec" : "6gb",
+                "max_restore_bytes_per_sec" : "6gb",
+                "concurrent_streams" : "50"
+         }
+  }'
+
+### Describe the repository created
+ - curl -XGET 'http://localhost:9200/_snapshot/es-backup-aws-prod?pretty'
+
+### Create a snapsho
+ - curl -XPUT 'http://localhost:9200/_snapshot/es-backup-aws-prod/listening-prod1-20140619?wait_for_completion=false'
+
+### Get the list of snapshots under the repository
+ - curl -XGET 'http://localhost:9200/_snapshot/es-backup-aws-prod/_all'
+
+### Describe a specific snapshot in a repository
+ - curl -XGET 'http://localhost:9200/_snapshot/es-backup-aws-prod/listening-prod1-20140619'
+
+### Restore the snapshot
+ - curl -XPOST "localhost:9200/_snapshot/es-backup-aws-prod/reporting1-ssd-20140619/_restore"
+
+### Restoring a particular index / Register the repository / Close the index to restored: This is to prevent any operation on the index
+ - curl -XPOST 'localhost:9200/reporting_p382_v1_00000000_0000/_close'
+ - curl -XPOST "localhost:9200/_snapshot/es-backup-aws-prod/reporting1-ssd-20140619/_restore" -d '{"indices": "reporting_p382_v1_00000000_0000"}'
+ - curl -XPOST 'localhost:9200/reporting_p382_v1_00000000_0000/_open'
+
+### ES Cluster version information
+ - curl -XGET 'localhost:9200'
+
+### Number of documents in cluster
+ - curl -XGET localhost:9200/_count
+
+### Count of an index
+ - curl -XGET localhost:9200/<index_name>/_count 
+
+### ES Pending tasks information
+ - curl -XGET 'localhost:9200/_cat/pending_tasks'
+
+### Lists all relocation shards
+ - curl -s localhost:9200/_cat/shards?v | grep RELOC
+
+### List all unassigned shards
+ - curl -s localhost:9200/_cat/shards?v | grep UN
+
+### ES Recovery information
+ - curl -s -XGET 'localhost:9200/_cat/recovery?v'
+
+### Indices info
+ - curl -s -XGET 'localhost:9200/_cat/indices?h=index
+
+### Plugin Info
+ - curl -XGET 'localhost:9200/_cat/plugins?v' 
+
+### Deleting all incdices from cluster
+ - curl -XDELETE 'http://localhost:9200/_all'

@@ -4,3 +4,7 @@ https://adamj.eu/tech/2014/08/16/time-to-move-on-from-cron/
 http://oldblog.antirez.com/post/redis-persistence-demystified.html
 
 http://www.slideshare.net/iammutex/what-every-data-programmer-needs-to-know-about-disks
+
+https://www.reddit.com/r/devops/
+
+https://news.ycombinator.com/
