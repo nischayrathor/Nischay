@@ -151,3 +151,11 @@
 
 ### Deleting all incdices from cluster
  - curl -XDELETE 'http://localhost:9200/_all'
+
+### setting up replication for inddex
+ - curl -XPUT 'localhost:9200/_all/_settings' -d '
+ {
+     "index" : {
+             "number_of_replicas" : 1
+           }
+   }
