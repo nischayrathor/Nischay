@@ -9,3 +9,5 @@
                          http://www.nuodb.com/techblog/tuning-linux-io-scheduler-ssds
                          https://wiki.debian.org/SSDOptimization
                          https://wiki.archlinux.org/index.php/Solid_State_Drives
+
+4. Removing stalled checks from sensu in redis - http://serverfault.com/questions/638629/sensu-delete-a-check-from-clients
